@@ -748,12 +748,12 @@
  * These options are most useful for the BLTouch probe, but may also improve
  * readings with inductive probes and piezo sensors.
  */
-#define PROBING_HEATERS_OFF       // Turn heaters off when probing
+//#define PROBING_HEATERS_OFF       // Turn heaters off when probing
 #if ENABLED(PROBING_HEATERS_OFF)
   //#define WAIT_FOR_BED_HEATER     // Wait for bed to heat back up between probes (to improve accuracy)
 #endif
-#define PROBING_FANS_OFF          // Turn fans off when probing
-#define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors
+//#define PROBING_FANS_OFF          // Turn fans off when probing
+//#define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors
 
 // A probe that is deployed and stowed with a solenoid pin (SOL1_PIN)
 //#define SOLENOID_PROBE
@@ -790,10 +790,10 @@
 #define Z_PROBE_OFFSET_FROM_EXTRUDER 0  // Z offset: -below +above [the nozzle]
 
 // Certain types of probes need to stay away from edges
-#define MIN_PROBE_EDGE 30
+#define MIN_PROBE_EDGE 0
 
 // X and Y axis travel speed (mm/m) between probes
-#define XY_PROBE_SPEED 6000
+#define XY_PROBE_SPEED 7200
 
 // Feedrate (mm/m) for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_SPEED_FAST HOMING_FEEDRATE_Z
@@ -892,8 +892,8 @@
 #define Y_BED_SIZE 220
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS 0 // -14 ?
-#define Y_MIN_POS 0 // 3 ?
+#define X_MIN_POS -12
+#define Y_MIN_POS 0
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
@@ -1067,8 +1067,8 @@
 
   //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
-  #define MESH_INSET 30              // Set Mesh bounds as an inset region of the bed
-  #define GRID_MAX_POINTS_X 7      // Don't use more than 15 points per axis, implementation limited.
+  #define MESH_INSET 0              // Set Mesh bounds as an inset region of the bed
+  #define GRID_MAX_POINTS_X 8      // Don't use more than 15 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   #define UBL_MESH_EDIT_MOVES_Z     // Sophisticated users prefer no movement of nozzle
@@ -1092,16 +1092,26 @@
 #endif // BED_LEVELING
 
 /**
+
+   // Boundaries for Cartesian probing based on bed limits
+  #define _MIN_PROBE_X (max(X_MIN_BED + MIN_PROBE_EDGE, X_MIN_POS + X_PROBE_OFFSET_FROM_EXTRUDER))
+  #define _MIN_PROBE_Y (max(Y_MIN_BED + MIN_PROBE_EDGE, Y_MIN_POS + Y_PROBE_OFFSET_FROM_EXTRUDER))
+  #define _MAX_PROBE_X (min(X_MAX_BED - (MIN_PROBE_EDGE), X_MAX_POS + X_PROBE_OFFSET_FROM_EXTRUDER))
+  #define _MAX_PROBE_Y (min(Y_MAX_BED - (MIN_PROBE_EDGE), Y_MAX_POS + Y_PROBE_OFFSET_FROM_EXTRUDER))
+
+ */
+
+/**
  * Points to probe for all 3-point Leveling procedures.
  * Override if the automatically selected points are inadequate.
  */
 #if ENABLED(AUTO_BED_LEVELING_3POINT) || ENABLED(AUTO_BED_LEVELING_UBL)
-  #define PROBE_PT_1_X 30
-  #define PROBE_PT_1_Y 190
-  #define PROBE_PT_2_X 30
-  #define PROBE_PT_2_Y 30
-  #define PROBE_PT_3_X 190
-  #define PROBE_PT_3_Y 30
+  #define PROBE_PT_1_X 27
+  #define PROBE_PT_1_Y 210
+  #define PROBE_PT_2_X 27
+  #define PROBE_PT_2_Y 15
+  #define PROBE_PT_3_X 180
+  #define PROBE_PT_3_Y 15
 #endif
 
 /**
