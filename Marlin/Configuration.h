@@ -395,9 +395,9 @@
   //#define DEFAULT_Kd 86.0
 
   // ANET A8 RAMPS 1.4 (measured after M106 S255 with M303 E0 S200 C8) 
-  #define DEFAULT_Kp 25.45
-  #define DEFAULT_Ki 1.89
-  #define DEFAULT_Kd 85.49
+  #define DEFAULT_Kp 21.66
+  #define DEFAULT_Ki 1.34
+  #define DEFAULT_Kd 87.40
 
 #endif // PIDTEMP
 
