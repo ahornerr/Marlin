@@ -394,10 +394,10 @@
   //#define DEFAULT_Ki 1.25
   //#define DEFAULT_Kd 86.0
 
-  // ANET A8 RAMPS 1.4 (measured after M106 S255 with M303 E0 S200 C8) 
-  #define DEFAULT_Kp 21.43
-  #define DEFAULT_Ki 1.32
-  #define DEFAULT_Kd 86.88
+  // ANET A8 RAMPS 1.4 with silicone sock (measured after M106 S255 with M303 E0 S200 C8) 
+  #define DEFAULT_Kp 37.21
+  #define DEFAULT_Ki 3.24
+  #define DEFAULT_Kd 106.70
 
 #endif // PIDTEMP
 
@@ -617,7 +617,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 95 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 96 }
 
 /**
  * Default Max Feed Rate (mm/s)
